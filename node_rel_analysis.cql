@@ -31,8 +31,21 @@ MATCH (e1:Entry {page : 'search_page'})<-[r1:VISITED]-(u:User)-[r2:VISITED]->(e2
 MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'search_page'})
     RETURN u.gender , count(u.gender) AS total
 
-// 1.1. Device Grouping
+// 1.2. Device Grouping
 MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'search_page'})
     RETURN u.device , count(u.device) AS total
  
+// 1.3. Device and Gender Grouping
+MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'search_page'})
+    RETURN u.device, u.gender , count(u) AS total ORDER BY count(u) DESC
+ 
 
+// Payment Page 
+
+// Return user's
+MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'payment_confirmation_page'})
+    RETURN u 
+
+// Grouping user's basd on gender and device
+MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'payment_confirmation_page'})
+    RETURN u.gender as gender , u.device as device , count(u) as total ORDER BY count(u) DESC
