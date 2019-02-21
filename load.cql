@@ -75,3 +75,13 @@ MERGE (u)-[r:VISITED]->(e)
     ON MATCH SET r.visited_count = r.visited_count + 1
     ON CREATE SET r.visited_count = 1
 
+
+// Add order's and total purchase data to user's nodes
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS 
+FROM 'file:///user_order_purchase.csv' AS line
+WITH DISTINCT line
+
+MATCH (u:User { id: toInteger(line.`user_id`) })
+SET u.total_orders = line.`total_orders`,
+    u.total_amount = line.`total_amount`

@@ -11,10 +11,6 @@ MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'home_page'})
 MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'payment_page'})
     RETURN count(distinct(r))
 
-// Count the number of users visited payment confirmation page
-MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'payment_confirmation_page'})
-    RETURN count(distinct(r))
-
 // Returns distinct user's list who visited payment confirmation page
 MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'payment_confirmation_page'})
     RETURN distinct(u) limit 1
@@ -38,14 +34,3 @@ MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'search_page'})
 // 1.3. Device and Gender Grouping
 MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'search_page'})
     RETURN u.device, u.gender , count(u) AS total ORDER BY count(u) DESC
- 
-
-// Payment Page 
-
-// Return user's
-MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'payment_confirmation_page'})
-    RETURN u 
-
-// Grouping user's basd on gender and device
-MATCH (u:User)-[r:VISITED]->(e:Entry { page : 'payment_confirmation_page'})
-    RETURN u.gender as gender , u.device as device , count(u) as total ORDER BY count(u) DESC
