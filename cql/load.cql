@@ -76,11 +76,11 @@ MERGE (u)-[r:VISITED]->(e)
     ON CREATE SET r.visited_count = 1
 
 
-USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS 
-FROM 'file:///Users/dhritiman/vm_shared_data/ecommerce-funnel-analysis/funnel/location.csv' AS line
-WITH line
+// USING PERIODIC COMMIT
+// LOAD CSV WITH HEADERS 
+// FROM 'file:///location.csv' AS line
+// WITH line
 
-MATCH (u:User { id : toInteger(line.`user_id`)})
-MERGE (u)-[r:VISITED]->(e)
-    ON MATCH SET r.state = line.`state` , r.country = line.`country`
+// MATCH (u:User { id : toInteger(line.`user_id`)})
+// MERGE (u)-[r:VISITED]->(e)
+//     ON MATCH SET r.state = line.`state` , r.country = line.`country`
