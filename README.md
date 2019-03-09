@@ -4,7 +4,7 @@ This Neo4j based project does a funnel analysis for a E-Commerce website. It is 
 
 ## Data Model
 
-![enter image description here](https://i.imgur.com/a3k6Vl2.png)
+![enter image description here](https://i.imgur.com/rnFNiIH.png)
 
 ### Nodes with properties 
 
